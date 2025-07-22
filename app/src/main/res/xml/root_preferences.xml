@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="App Settings">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Enable Notifications"
+            android:summary="Get notified about alerts and updates"
+            android:defaultValue="true"
+            android:icon="@drawable/ic_notification" />
+
+        <ListPreference
+            android:key="theme"
+            android:title="App Theme"
+            android:summary="Select light or dark mode"
+            android:entries="@array/theme_options"
+            android:entryValues="@array/theme_values"
+            android:defaultValue="light"
+            android:icon="@drawable/ic_theme" />
+
+        <SwitchPreferenceCompat
+            android:key="location_access"
+            android:title="Location Access"
+            android:summary="Allow app to access your location"
+            android:defaultValue="false"
+            android:icon="@drawable/ic_location" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Information">
+
+        <Preference
+            android:key="about_app"
+            android:title="About"
+            android:summary="App version and developer info"
+            android:icon="@drawable/ic_info" />
+
+        <Preference
+            android:key="privacy_policy"
+            android:title="Privacy Policy"
+            android:summary="Read our privacy practices"
+            android:icon="@drawable/ic_privacy" />
+
+        <Preference
+            android:key="terms_conditions"
+            android:title="Terms &amp; Conditions"
+            android:summary="Review app terms"
+            android:icon="@drawable/ic_terms" />
+    </PreferenceCategory>
+
+    <com.example.drunk.LogoutPreference
+        android:key="logout"
+        android:title="Logout"
+        android:summary="Sign out of your account"
+        android:icon="@drawable/ic_logout_red" />
+
+
+
+</PreferenceScreen>

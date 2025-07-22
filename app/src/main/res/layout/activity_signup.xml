@@ -1,0 +1,33 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/background_light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Police Officer Sign Up"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText android:id="@+id/fullName" android:hint="Full Name" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/policeId" android:hint="Police ID" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/email" android:hint="Email" android:inputType="textEmailAddress" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/phone" android:hint="Phone Number" android:inputType="phone" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/rank" android:hint="Rank" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/station" android:hint="Police Station" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/password" android:hint="Password" android:inputType="textPassword" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/buttonSignUp" android:text="Sign Up" android:layout_marginTop="20dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <Button android:id="@+id/buttonGoToLogin" android:text="Already have an account? Login" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>
