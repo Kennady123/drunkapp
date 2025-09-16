@@ -1,65 +1,106 @@
 package com.example.drunk;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class AlertFragment extends Fragment {
 
-    private TextView alertMessageTextView, alertTimestampTextView;
+    private static final String PREF_NAME = "ALERT_PREF";
+    private static final String ALERT_LIST_KEY = "alert_list";
+
+    private LinearLayout container;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_alert, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_alert, container, false);
+    }
 
-        alertMessageTextView = view.findViewById(R.id.alertMessage);
-        alertTimestampTextView = view.findViewById(R.id.alertTimestamp);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        container = view.findViewById(R.id.alertContainer);
+        loadAlerts();
+    }
 
-        // Firebase reference
-        DatabaseReference alertsRef = FirebaseDatabase.getInstance()
-                .getReference("alerts");
+    private void loadAlerts() {
+        SharedPreferences prefs = requireContext().getSharedPreferences(PREF_NAME, 0);
+        String alertJson = prefs.getString(ALERT_LIST_KEY, "[]");
 
-        alertsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String message = snapshot.child("message").getValue(String.class);
-                    String timestamp = snapshot.child("timestamp").getValue(String.class);
+        try {
+            JSONArray alerts = new JSONArray(alertJson);
+            JSONArray recentAlerts = new JSONArray();
 
-                    // 🔽 ADD THESE
-                    Log.d("FirebaseAlert", "message: " + message + ", time: " + timestamp);
-                    Toast.makeText(getContext(), "Fetched alert from Firebase", Toast.LENGTH_SHORT).show();
+            long now = System.currentTimeMillis();
+            long oneDayMillis = 24 * 60 * 60 * 1000;
 
-                    alertMessageTextView.setText("Alert: " + message);
-                    alertTimestampTextView.setText("Time: " + timestamp);
-                } else {
-                    Toast.makeText(getContext(), "No alert data found", Toast.LENGTH_SHORT).show();
+            container.removeAllViews();
+
+            for (int i = 0; i < alerts.length(); i++) {
+                JSONObject alert = alerts.getJSONObject(i);
+
+                String timestamp = alert.getString("timestamp");
+                long alertTime = parseTimestampToMillis(timestamp);
+
+                if ((now - alertTime) <= oneDayMillis) {
+                    recentAlerts.put(alert);
+
+                    View alertItem = LayoutInflater.from(getContext())
+                            .inflate(R.layout.item_alert, container, false);
+
+                    ((TextView) alertItem.findViewById(R.id.alertTitle))
+                            .setText(alert.getString("title"));
+                    ((TextView) alertItem.findViewById(R.id.alertMessage))
+                            .setText(alert.getString("message"));
+                    ((TextView) alertItem.findViewById(R.id.alertTimestamp))
+                            .setText(timestamp);
+
+                    // New: show latitude and longitude if available
+                    TextView latView = alertItem.findViewById(R.id.alertLat);
+                    TextView lonView = alertItem.findViewById(R.id.alertLon);
+
+                    if (alert.has("lat") && alert.has("lon")) {
+                        latView.setText("Lat: " + alert.getString("lat"));
+                        lonView.setText("Lon: " + alert.getString("lon"));
+                    } else {
+                        latView.setText("Lat: N/A");
+                        lonView.setText("Lon: N/A");
+                    }
+
+                    container.addView(alertItem);
                 }
             }
 
+            prefs.edit().putString(ALERT_LIST_KEY, recentAlerts.toString()).apply();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        return view;
+    private long parseTimestampToMillis(String timestamp) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+            Date date = sdf.parse(timestamp);
+            return date != null ? date.getTime() : 0;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

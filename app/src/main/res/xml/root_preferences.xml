@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconTint="?attr/colorControlNormal">
 
     <PreferenceCategory android:title="App Settings">
 
@@ -28,7 +31,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Information">
-
         <Preference
             android:key="about_app"
             android:title="About"
@@ -48,12 +50,12 @@
             android:icon="@drawable/ic_terms" />
     </PreferenceCategory>
 
-    <com.example.drunk.LogoutPreference
-        android:key="logout"
-        android:title="Logout"
-        android:summary="Sign out of your account"
-        android:icon="@drawable/ic_logout_red" />
-
-
+    <PreferenceCategory android:title="Account">
+        <com.example.drunk.LogoutPreference
+            android:key="logout"
+            android:title="Logout"
+            android:summary="Sign out of your account"
+            android:icon="@drawable/ic_logout_red" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

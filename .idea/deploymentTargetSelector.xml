@@ -7,10 +7,10 @@
       </SelectionState>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-20T09:09:20.756282900Z">
+        <DropdownSelection timestamp="2025-09-09T09:20:27.258367600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=9HJNPZWWGYVKQWEY" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Thomas\.android\avd\Pixel_6a.avd" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -18,10 +18,10 @@
       </SelectionState>
       <SelectionState runConfigName="Drunk">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-21T18:23:48.057657800Z">
+        <DropdownSelection timestamp="2025-08-21T09:11:06.858956900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Thomas\.android\avd\Pixel_6a.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=9HJNPZWWGYVKQWEY" />
             </handle>
           </Target>
         </DropdownSelection>

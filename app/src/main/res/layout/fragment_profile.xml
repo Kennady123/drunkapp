@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FD"
+    android:background="?android:attr/windowBackground"
     android:padding="16dp">
 
     <LinearLayout
@@ -20,10 +20,16 @@
             android:text="Edit Profile"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#212121"
+            android:textColor="?android:textColorPrimary"
             android:layout_marginBottom="24dp" />
 
-        <!-- Name -->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/profile_icon" />
+
+        <!-- Full Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +39,8 @@
                 android:id="@+id/editName"
                 android:hint="Full Name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Email -->
@@ -48,7 +55,8 @@
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Phone -->
@@ -63,7 +71,8 @@
                 android:hint="Phone Number"
                 android:inputType="phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Police ID -->
@@ -77,7 +86,8 @@
                 android:id="@+id/editPoliceId"
                 android:hint="Police ID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Rank -->
@@ -91,7 +101,8 @@
                 android:id="@+id/editRank"
                 android:hint="Rank"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Station -->
@@ -105,7 +116,8 @@
                 android:id="@+id/editStation"
                 android:hint="Police Station"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="?android:textColorPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Save Button -->
@@ -114,8 +126,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save Profile"
-            android:backgroundTint="#3D5AFE"
-            android:textColor="#FFFFFF"
+            android:textColor="?android:textColorPrimaryInverse"
+            android:backgroundTint="?attr/colorPrimary"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="32dp" />
 

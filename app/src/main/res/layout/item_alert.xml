@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#FFF"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/alertTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/alertMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/alertTimestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timestamp"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/alertLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lat: N/A"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/alertLon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lon: N/A"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"/>
+</LinearLayout>

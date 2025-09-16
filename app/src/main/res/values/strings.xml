@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Drunk</string>
+    <string name="app_name">DriveGuard</string>
+    <string name="location_not_available">Location not available</string>
+    <!-- Your other strings here -->
 </resources>
